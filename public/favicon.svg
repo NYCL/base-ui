@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Base UI / React conceptual rings -->
+  <g transform="translate(128, 110) scale(0.7)">
+    <ellipse rx="130" ry="45" transform="rotate(30)" fill="none" stroke="#007FFF" stroke-width="22" opacity="0.8" />
+    <ellipse rx="130" ry="45" transform="rotate(-30)" fill="none" stroke="#007FFF" stroke-width="22" opacity="0.8" />
+    <ellipse rx="130" ry="45" transform="rotate(90)" fill="none" stroke="#007FFF" stroke-width="22" opacity="0.8" />
+  </g>
+  
+  <!-- Classic Vue V overlay -->
+  <g transform="translate(48, 48) scale(1.22)">
+    <polygon points="65.3,130 0,0 28.5,0 65.3,71.5 102.1,0 130.6,0 " fill="#41B883"/>
+    <polygon points="65.3,130 28.5,0 52.3,0 65.3,25.2 78.4,0 102.1,0 " fill="#34495E"/>
+  </g>
+</svg>
