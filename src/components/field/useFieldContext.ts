@@ -1,5 +1,6 @@
 import { type InjectionKey, inject, type Ref } from 'vue';
-import type { FieldState } from '@/utils/types';
+import type { FieldState, FieldValidityData } from '@/utils/types';
+import type { UseFieldValidationReturn } from './useFieldValidation';
 
 /**
  * The shape of the field context shared from FieldRoot → child components.
@@ -15,12 +16,17 @@ export interface FieldContext {
   labelId: Ref<string>;
   /** Validation mode. */
   validationMode: Ref<'onSubmit' | 'onBlur' | 'onChange'>;
+  /** Validation debounce time (ms). */
+  validationDebounceTime: Ref<number>;
+  /** Rich validity data (native state + error messages). */
+  validityData: Ref<FieldValidityData>;
+  /** The validation engine — used by FieldControl to trigger validation. */
+  validation: UseFieldValidationReturn;
   /** State mutators — called by FieldControl to update shared state. */
   setTouched: (value: boolean) => void;
   setDirty: (value: boolean) => void;
   setFilled: (value: boolean) => void;
   setFocused: (value: boolean) => void;
-  setValid: (value: boolean | null) => void;
 }
 
 /** Injection key for type-safe provide/inject. */

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed, ref, useId, useTemplateRef, type Component, watch } from 'vue';
 import { useFieldContext } from './useFieldContext';
-import type { FieldState } from '@/utils/types';
+import type { FieldState, FieldValidityData } from '@/utils/types';
+import { DEFAULT_VALIDITY_STATE } from '@/utils/types';
 import { stateToDataAttributes } from '@/utils/dataAttributes';
+import { useFieldValidation } from './useFieldValidation';
 
 const {
   disabled = false,
@@ -49,6 +51,30 @@ const localTouched = ref(false);
 const localDirty = ref(false);
 const localFilled = ref(modelValue.value !== '');
 const localFocused = ref(false);
+const localMarkedDirty = ref(false);
+const localValidityData = ref<FieldValidityData>({
+  state: { ...DEFAULT_VALIDITY_STATE },
+  error: '',
+  errors: [],
+  value: null,
+  initialValue: null,
+});
+
+// Local validation (when used standalone without FieldRoot)
+const localValidation = useFieldValidation({
+  validate: () => null,
+  validityData: localValidityData,
+  setValidityData: (data) => {
+    localValidityData.value = data;
+  },
+  getValidationDebounceTime: () => 0,
+  invalid: false,
+  markedDirtyRef: localMarkedDirty,
+  shouldValidateOnChange: () => false,
+});
+
+// Resolve whether to use context or local validation
+const validation = computed(() => fieldContext?.validation ?? localValidation);
 
 const state = computed<FieldState>(() => {
   if (fieldContext) {
@@ -87,6 +113,7 @@ function setDirty(value: boolean) {
   if (fieldContext) {
     fieldContext.setDirty(value);
   } else {
+    if (value) localMarkedDirty.value = true;
     localDirty.value = value;
   }
 }
@@ -117,6 +144,9 @@ function onInput(event: Event) {
 
   setDirty(newValue !== initialValue);
   setFilled(newValue !== '');
+
+  // Run onChange validation (or lightweight re-validation)
+  validation.value.commitOnChange(newValue);
 }
 
 function onFocus() {
@@ -127,8 +157,9 @@ function onBlur() {
   setTouched(true);
   setFocused(false);
 
-  if (fieldContext?.validationMode.value === 'onBlur') {
-    // Validation hook point — will be expanded later
+  const validationMode = fieldContext?.validationMode.value;
+  if (validationMode === 'onBlur') {
+    validation.value.commit(modelValue.value);
   }
 }
 
@@ -136,8 +167,20 @@ function onKeydown(event: KeyboardEvent) {
   const target = event.target as HTMLElement;
   if (target.tagName === 'INPUT' && event.key === 'Enter') {
     setTouched(true);
+    validation.value.commit(modelValue.value);
   }
 }
+
+// Bind the validation inputRef to our rendered element
+watch(
+  controlRef,
+  (el) => {
+    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) {
+      validation.value.inputRef.value = el as HTMLInputElement;
+    }
+  },
+  { immediate: true },
+);
 
 // Sync initial filled state
 watch(
@@ -166,6 +209,7 @@ defineExpose({
     :type="as === 'input' ? type : undefined"
     :value="modelValue"
     :aria-labelledby="fieldContext?.labelId.value"
+    :aria-invalid="state.valid === false || undefined"
     :autofocus="autoFocus || undefined"
     v-bind="dataAttrs"
     @input="onInput"

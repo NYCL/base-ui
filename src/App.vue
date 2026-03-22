@@ -1,16 +1,20 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { FieldRoot, FieldLabel } from '@/components/field';
+import { ref } from 'vue';
+import { FieldRoot, FieldLabel, FieldError } from '@/components/field';
 import { Input } from '@/components/input';
 
 const controlledValue = ref('Hello, Base UI!');
 const emailValue = ref('');
 const textareaValue = ref('');
+const debounceTime = ref(400);
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const isEmailInvalid = computed(
-  () => emailValue.value.length > 0 && !emailPattern.test(emailValue.value),
-);
+
+function validateEmail(value: unknown) {
+  const v = String(value);
+  if (v.length > 0 && !emailPattern.test(v)) return '⚠ Please enter a valid email address.';
+  return null;
+}
 
 function setAccent(color: string) {
   document.documentElement.style.setProperty('--input-accent', color);
@@ -54,14 +58,49 @@ function setAccent(color: string) {
         <button @click="controlledValue = 'Reset!'">Reset</button>
       </section>
 
-      <!-- Error with email validation -->
+      <!-- Error with declarative validation (onBlur) -->
       <section>
-        <h2>Interactive — Error</h2>
-        <FieldRoot name="email-field" :invalid="isEmailInvalid">
+        <h2>Validation — onBlur</h2>
+        <FieldRoot name="email-field" :validate="validateEmail" validation-mode="onBlur">
           <FieldLabel>Email</FieldLabel>
           <Input v-model="emailValue" placeholder="you@example.com" type="email" />
+          <FieldError class="field-error" />
         </FieldRoot>
-        <p class="state-debug" v-if="isEmailInvalid">⚠ Please enter a valid email address.</p>
+      </section>
+
+      <!-- Error with onChange validation + adjustable debounce -->
+      <section>
+        <h2>Validation — onChange</h2>
+        <div class="debounce-control">
+          <label for="debounce-slider">
+            Debounce: <code>{{ debounceTime }}ms</code>
+          </label>
+          <input
+            id="debounce-slider"
+            type="range"
+            min="0"
+            max="1000"
+            step="50"
+            v-model.number="debounceTime"
+            class="range-slider"
+          />
+          <div class="debounce-presets">
+            <button @click="debounceTime = 0">0ms</button>
+            <button @click="debounceTime = 200">200ms</button>
+            <button @click="debounceTime = 400">400ms</button>
+            <button @click="debounceTime = 1000">1s</button>
+          </div>
+        </div>
+        <FieldRoot
+          name="email-field-onchange"
+          :validate="validateEmail"
+          validation-mode="onChange"
+          :validation-debounce-time="debounceTime"
+        >
+          <FieldLabel>Email (live)</FieldLabel>
+          <Input placeholder="you@example.com" type="email" />
+          <FieldError class="field-error" />
+        </FieldRoot>
       </section>
 
       <!-- Disabled -->
@@ -226,6 +265,54 @@ textarea[data-invalid]:focus-visible {
 textarea {
   min-height: 80px;
   resize: vertical;
+}
+
+/* ── Field Error ── */
+.field-error {
+  font-size: 0.8rem;
+  color: var(--input-error);
+  margin-top: 0.4rem;
+}
+
+/* ── Debounce Control ── */
+.debounce-control {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: #111113;
+  border: 1px solid #27272a;
+  border-radius: 8px;
+}
+
+.debounce-control label {
+  margin-bottom: 0.35rem;
+}
+
+.debounce-control label code {
+  color: var(--input-accent);
+  background: #27272a;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.range-slider {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  accent-color: var(--input-accent);
+  cursor: pointer;
+}
+
+.range-slider:focus-visible {
+  box-shadow: none;
+}
+
+.debounce-presets {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
 }
 
 /* ── Swatches ── */

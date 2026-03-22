@@ -65,3 +65,18 @@ export const DEFAULT_FIELD_STATE: FieldState = {
   filled: false,
   focused: false,
 };
+
+/**
+ * A custom validation function passed to FieldRoot.
+ *
+ * Return a string or array of strings with the error message(s) if the value
+ * is invalid, or `null` if everything is valid.
+ *
+ * Async functions are supported.
+ *
+ * When a Form component is added later, the signature will be extended to
+ * `(value: unknown, formValues: Record<string, unknown>) => ...`.
+ */
+export type ValidateFn = (
+  value: unknown,
+) => string | string[] | null | Promise<string | string[] | null>;
