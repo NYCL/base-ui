@@ -1,4 +1,5 @@
 import type { FieldState } from './types';
+import { InputDataAttributes } from '@/components/input/InputDataAttributes';
 
 /**
  * Maps a FieldState object to `data-*` HTML attributes.
@@ -14,15 +15,15 @@ import type { FieldState } from './types';
 export function stateToDataAttributes(state: FieldState): Record<string, string> {
   const attrs: Record<string, string> = {};
 
-  if (state.disabled) attrs['data-disabled'] = '';
-  if (state.touched) attrs['data-touched'] = '';
-  if (state.dirty) attrs['data-dirty'] = '';
-  if (state.filled) attrs['data-filled'] = '';
-  if (state.focused) attrs['data-focused'] = '';
+  if (state.disabled) attrs[InputDataAttributes.disabled] = '';
+  if (state.touched) attrs[InputDataAttributes.touched] = '';
+  if (state.dirty) attrs[InputDataAttributes.dirty] = '';
+  if (state.filled) attrs[InputDataAttributes.filled] = '';
+  if (state.focused) attrs[InputDataAttributes.focused] = '';
 
   // valid/invalid are mutually exclusive; null = not yet checked
-  if (state.valid === true) attrs['data-valid'] = '';
-  if (state.valid === false) attrs['data-invalid'] = '';
+  if (state.valid === true) attrs[InputDataAttributes.valid] = '';
+  if (state.valid === false) attrs[InputDataAttributes.invalid] = '';
 
   return attrs;
 }
