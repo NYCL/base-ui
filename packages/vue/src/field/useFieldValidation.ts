@@ -1,6 +1,6 @@
 import { ref, type Ref, type ShallowRef } from 'vue';
-import { useTimeout } from '@/composables/useTimeout';
-import { type FieldValidityData, type ValidateFn, DEFAULT_VALIDITY_STATE } from '@/utils/types';
+import { useTimeout } from '@base-ui/utils';
+import { type FieldValidityData, type ValidateFn, DEFAULT_VALIDITY_STATE } from '@base-ui/utils';
 
 const validityKeys = Object.keys(DEFAULT_VALIDITY_STATE) as Array<keyof ValidityState>;
 

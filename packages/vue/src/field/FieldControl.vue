@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, useId, useTemplateRef, type Component, watch } from 'vue';
 import { useFieldContext } from './useFieldContext';
-import type { FieldState, FieldValidityData } from '@/utils/types';
-import { DEFAULT_VALIDITY_STATE } from '@/utils/types';
-import { stateToDataAttributes } from '@/utils/dataAttributes';
+import type { FieldState, FieldValidityData } from '@base-ui/utils';
+import { DEFAULT_VALIDITY_STATE } from '@base-ui/utils';
+import { stateToDataAttributes } from '@base-ui/utils';
 import { useFieldValidation } from './useFieldValidation';
 
 const {

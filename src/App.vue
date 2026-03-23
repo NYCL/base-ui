@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { FieldRoot, FieldLabel, FieldError } from '@/components/field';
-import { Input } from '@/components/input';
+import { FieldRoot, FieldLabel, FieldError, Input } from '@base-ui/vue';
 
 const controlledValue = ref('Hello, Base UI!');
 const emailValue = ref('');

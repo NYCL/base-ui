@@ -5,6 +5,8 @@
     "": {
       "name": "vue-base-ui",
       "dependencies": {
+        "@base-ui/utils": "workspace:*",
+        "@base-ui/vue": "workspace:*",
         "vue": "^3.5.29",
       },
       "devDependencies": {
@@ -18,6 +20,22 @@
         "vite": "^8.0.1",
         "vite-plugin-vue-devtools": "^8.0.6",
         "vue-tsc": "^3.2.5",
+      },
+    },
+    "packages/react": {
+      "name": "@base-ui/react",
+      "version": "0.0.0",
+    },
+    "packages/utils": {
+      "name": "@base-ui/utils",
+      "version": "0.0.0",
+    },
+    "packages/vue": {
+      "name": "@base-ui/vue",
+      "version": "0.0.0",
+      "dependencies": {
+        "@base-ui/utils": "workspace:*",
+        "vue": "^3.5.29",
       },
     },
   },
@@ -81,6 +99,12 @@
     "@babel/traverse": ["@babel/traverse@7.29.0", "", { "dependencies": { "@babel/code-frame": "^7.29.0", "@babel/generator": "^7.29.0", "@babel/helper-globals": "^7.28.0", "@babel/parser": "^7.29.0", "@babel/template": "^7.28.6", "@babel/types": "^7.29.0", "debug": "^4.3.1" } }, "sha512-4HPiQr0X7+waHfyXPZpWPfWL/J7dcN1mx9gL6WdQVMbPnF3+ZhSMs8tCxN7oHddJE9fhNE7+lxdnlyemKfJRuA=="],
 
     "@babel/types": ["@babel/types@7.29.0", "", { "dependencies": { "@babel/helper-string-parser": "^7.27.1", "@babel/helper-validator-identifier": "^7.28.5" } }, "sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A=="],
+
+    "@base-ui/react": ["@base-ui/react@workspace:packages/react"],
+
+    "@base-ui/utils": ["@base-ui/utils@workspace:packages/utils"],
+
+    "@base-ui/vue": ["@base-ui/vue@workspace:packages/vue"],
 
     "@emnapi/core": ["@emnapi/core@1.9.1", "", { "dependencies": { "@emnapi/wasi-threads": "1.2.0", "tslib": "^2.4.0" } }, "sha512-mukuNALVsoix/w1BJwFzwXBN/dHeejQtuVzcDsfOEsdpCumXb/E9j8w11h5S54tT1xhifGfbbSm/ICrObRb3KA=="],
 

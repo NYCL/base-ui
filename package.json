@@ -3,18 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --build && vite build",
     "preview": "vite preview",
     "type:check": "vue-tsc --build --noEmit",
-    "lint": "oxlint --fix ./src",
-    "lint:check": "oxlint ./src",
-    "format": "oxfmt src/",
-    "format:check": "oxfmt --check src/"
+    "lint": "oxlint --fix ./src ./packages/**/src",
+    "lint:check": "oxlint ./src ./packages/**/src",
+    "format": "oxfmt src/ packages/**/src/",
+    "format:check": "oxfmt --check src/ packages/**/src/"
   },
   "dependencies": {
-    "vue": "^3.5.29"
+    "vue": "^3.5.29",
+    "@base-ui/vue": "workspace:*",
+    "@base-ui/utils": "workspace:*"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",

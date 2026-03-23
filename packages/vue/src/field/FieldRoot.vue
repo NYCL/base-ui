@@ -2,9 +2,9 @@
 import { provide, ref, computed, useId } from 'vue';
 import { FIELD_CONTEXT_KEY, type FieldContext } from './useFieldContext';
 import { useFieldValidation } from './useFieldValidation';
-import type { FieldState, FieldValidityData, ValidateFn } from '@/utils/types';
-import { DEFAULT_VALIDITY_STATE } from '@/utils/types';
-import { stateToDataAttributes } from '@/utils/dataAttributes';
+import type { FieldState, FieldValidityData, ValidateFn } from '@base-ui/utils';
+import { DEFAULT_VALIDITY_STATE } from '@base-ui/utils';
+import { stateToDataAttributes } from '@base-ui/utils';
 
 const {
   disabled = false,

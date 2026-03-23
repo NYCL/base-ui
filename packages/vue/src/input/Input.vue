@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import FieldControl from '@/components/field/FieldControl.vue';
+import FieldControl from '../field/FieldControl.vue';
 import type { Component } from 'vue';
 
 const {

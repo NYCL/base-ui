@@ -1,5 +1,5 @@
 import type { FieldState } from './types';
-import { InputDataAttributes } from '@/components/input/InputDataAttributes';
+import { InputDataAttributes } from './InputDataAttributes';
 
 /**
  * Maps a FieldState object to `data-*` HTML attributes.

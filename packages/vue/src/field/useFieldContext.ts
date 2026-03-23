@@ -1,5 +1,5 @@
 import { type InjectionKey, inject, type Ref } from 'vue';
-import type { FieldState, FieldValidityData } from '@/utils/types';
+import type { FieldState, FieldValidityData } from '@base-ui/utils';
 import type { UseFieldValidationReturn } from './useFieldValidation';
 
 /**
