@@ -1,0 +1,300 @@
+/* ════════════════════════════════════════════════════
+   MARKDOWN BODY STYLES
+   Styles rendered markdown content to match the
+   reference Base UI documentation site.
+   ════════════════════════════════════════════════════ */
+
+.markdown-body {
+  font-size: var(--text-md);
+  line-height: var(--text-md--line-height);
+  color: var(--color-foreground);
+}
+
+/* ─── Headings ─── */
+
+.markdown-body h1 {
+  margin-bottom: 1rem;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.markdown-body h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  scroll-margin-top: 4.5rem;
+  font-size: 1.3125rem;
+  line-height: 1.625rem;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+@media (min-width: 64rem) {
+  .markdown-body h2 {
+    scroll-margin-top: 1.5rem;
+  }
+}
+
+.markdown-body h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.375rem;
+  scroll-margin-top: 4.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.0025em;
+  text-wrap: balance;
+}
+
+@media (min-width: 64rem) {
+  .markdown-body h3 {
+    scroll-margin-top: 1.5rem;
+  }
+}
+
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 2rem;
+  margin-bottom: 0.375rem;
+  scroll-margin-top: 1.5rem;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* ─── Body text ─── */
+
+.markdown-body p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--color-foreground);
+}
+
+.markdown-body a {
+  color: var(--color-blue);
+  text-decoration: none;
+  transition: text-decoration 0.15s;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.markdown-body a:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Lists ─── */
+
+.markdown-body ul {
+  margin-bottom: 1rem;
+  margin-left: 1.125rem;
+  list-style-type: disc;
+}
+
+.markdown-body ol {
+  margin-bottom: 1rem;
+  margin-left: 1.75rem;
+  list-style-type: decimal;
+}
+
+.markdown-body li {
+  margin-bottom: 0.125rem;
+}
+
+.markdown-body li > p {
+  margin-bottom: 0.5rem;
+}
+
+/* ─── Inline code ─── */
+
+.markdown-body code {
+  font-family: 'SF Mono', Menlo, 'DejaVu Sans Mono', Consolas, Inconsolata, monospace;
+  font-size: 0.875em;
+  background-color: var(--color-gray-100);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  color: var(--color-foreground);
+  border: 1px solid var(--color-gray-200);
+}
+
+/* ─── Code blocks ─── */
+
+.markdown-body pre {
+  background-color: var(--color-gray-75);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* ─── Blockquotes ─── */
+
+.markdown-body blockquote {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--color-gray-300);
+  color: var(--color-gray-600);
+}
+
+/* ─── Horizontal rules ─── */
+
+.markdown-body hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid var(--color-gray-200);
+}
+
+/* ─── Tables ─── */
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1.25rem;
+  font-size: var(--text-md);
+}
+
+.markdown-body th {
+  text-align: left;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--color-gray-200);
+}
+
+.markdown-body td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+/* ─── Page Header (subtitle) ─── */
+
+.markdown-body .page-header {
+  margin-bottom: 1.25rem;
+}
+
+.markdown-body .page-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body .description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-gray-600);
+  margin-top: -0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.markdown-body .description a {
+  color: var(--color-blue);
+}
+
+/* ─── Demo Sections ─── */
+
+.markdown-body .demo-section {
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.75rem;
+  padding: 2.5rem;
+  background-color: var(--color-content);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.markdown-body .hero-demo {
+  padding: 3rem 2rem;
+  background: radial-gradient(circle at center, var(--color-gray-100) 0%, var(--color-content) 100%);
+}
+
+/* ─── Form component styling within demos ─── */
+
+.markdown-body label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: var(--color-gray-900);
+  margin-bottom: 0.25rem;
+}
+
+.markdown-body input,
+.markdown-body textarea {
+  box-sizing: border-box;
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
+  margin: 0;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+  background-color: transparent;
+  color: var(--color-foreground);
+  outline: none;
+  transition: border-color 0.15s, outline 0.15s;
+}
+
+.markdown-body input {
+  width: 14rem;
+  height: 2.5rem;
+}
+
+.markdown-body textarea {
+  width: 100%;
+  min-height: 80px;
+  resize: vertical;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.markdown-body input:focus-visible,
+.markdown-body textarea:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: -1px;
+}
+
+.markdown-body input:disabled,
+.markdown-body textarea:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: var(--color-gray-200);
+}
+
+.markdown-body input[data-invalid],
+.markdown-body textarea[data-invalid] {
+  border-color: var(--color-red);
+}
+
+.markdown-body input[data-invalid]:focus-visible,
+.markdown-body textarea[data-invalid]:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: -1px;
+}
+
+.markdown-body .field-error {
+  font-size: 0.8rem;
+  color: var(--color-red);
+  margin-top: 0.4rem;
+}
