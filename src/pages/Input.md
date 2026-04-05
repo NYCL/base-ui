@@ -110,16 +110,16 @@ When the parent `FieldRoot` is disabled, the Input automatically becomes disable
 
 ### Input
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | — | The controlled value of the input |
-| `placeholder` | `string` | — | Placeholder text |
-| `type` | `string` | `'text'` | The input type |
-| `disabled` | `boolean` | `false` | Whether the input is disabled |
-| `required` | `boolean` | `false` | Whether the input is required |
+| Prop          | Type      | Default  | Description                       |
+| ------------- | --------- | -------- | --------------------------------- |
+| `modelValue`  | `string`  | —        | The controlled value of the input |
+| `placeholder` | `string`  | —        | Placeholder text                  |
+| `type`        | `string`  | `'text'` | The input type                    |
+| `disabled`    | `boolean` | `false`  | Whether the input is disabled     |
+| `required`    | `boolean` | `false`  | Whether the input is required     |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
+| Event               | Payload  | Description                    |
+| ------------------- | -------- | ------------------------------ |
 | `update:modelValue` | `string` | Emitted when the value changes |

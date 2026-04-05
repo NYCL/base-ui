@@ -1,24 +1,25 @@
 <script setup lang="ts">
 import { ref, nextTick, watch, onMounted, onBeforeUnmount } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import pkg from '../package.json';
 
 const route = useRoute();
-const router = useRouter();
 
 // ─── TOC / Quick Nav ───
 const tocItems = ref<{ id: string; text: string; level: number }[]>([]);
 const activeHeadingId = ref('');
 
 function extractToc() {
-  const headings = Array.from(
-    document.querySelectorAll('.markdown-body h2, .markdown-body h3'),
-  );
+  const headings = Array.from(document.querySelectorAll('.markdown-body h2, .markdown-body h3'));
   tocItems.value = headings.map((h) => {
     const el = h as HTMLElement;
     if (!el.id) {
       el.id =
-        el.textContent?.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') || '';
+        el.textContent
+          ?.trim()
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]/g, '') || '';
     }
     return {
       id: el.id,
@@ -59,7 +60,7 @@ function handleScroll() {
     }
   }
   if (!current && headings.length > 0) {
-    current = headings[0].id;
+    current = headings[0]?.id ?? '';
   }
   activeHeadingId.value = current;
 }
@@ -118,9 +119,9 @@ onMounted(applyTheme);
 // ─── Page Title ───
 const pageTitle = ref('');
 watch(
-  () => route.meta?.title,
+  () => (route.meta as Record<string, unknown>)['title'] as string | undefined,
   (title) => {
-    pageTitle.value = (title as string) || 'Base UI Vue';
+    pageTitle.value = title || 'Base UI Vue';
     document.title = `${pageTitle.value} — Base UI Vue`;
   },
   { immediate: true },
@@ -136,32 +137,74 @@ watch(
           <header class="Header">
             <div class="HeaderInner">
               <router-link to="/" class="HeaderLogoLink" aria-label="Home">
-                <img src="/favicon.svg" alt="Base UI Vue" width="24" height="24" class="HeaderLogo" />
+                <img
+                  src="/favicon.svg"
+                  alt="Base UI Vue"
+                  width="24"
+                  height="24"
+                  class="HeaderLogo"
+                />
               </router-link>
               <div class="HeaderDesktopActions">
                 <div class="HeaderSearch" aria-label="Search">
                   <!-- Search Icon -->
-                  <svg class="HeaderSearchIcon" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg
+                    class="HeaderSearchIcon"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
                     <circle cx="11" cy="11" r="8" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
                   <kbd class="HeaderSearchKbd">Ctrl + K</kbd>
                 </div>
-                <a class="HeaderLink" href="https://www.npmjs.com/package/vue-base-ui" target="_blank" rel="noopener"
-                  aria-label="NPM Package">
+                <a
+                  class="HeaderLink"
+                  href="https://www.npmjs.com/package/vue-base-ui"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="NPM Package"
+                >
                   <!-- Npm Icon (matching reference) -->
-                  <svg fill="currentcolor" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0V16H16V0H0ZM13 3H3V13H8V5H11V13H13V3Z" />
+                  <svg
+                    fill="currentcolor"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0 0V16H16V0H0ZM13 3H3V13H8V5H11V13H13V3Z"
+                    />
                   </svg>
                   {{ pkg.version }}
                 </a>
-                <a class="HeaderLink" href="https://github.com/nicklasyoung/base-ui" target="_blank" rel="noopener"
-                  aria-label="GitHub Repository">
+                <a
+                  class="HeaderLink"
+                  href="https://github.com/nicklasyoung/base-ui"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="GitHub Repository"
+                >
                   <!-- GitHub Icon (matching reference) -->
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="currentcolor" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="currentcolor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
-                      d="M9.375 0C4.6095 0 0.75 3.8595 0.75 8.625C0.75 12.4418 3.219 15.6652 6.64725 16.8075C7.0785 16.8832 7.23975 16.6245 7.23975 16.398C7.23975 16.1933 7.22925 15.5145 7.22925 14.7915C5.0625 15.1905 4.50225 14.2635 4.32975 13.779C4.23225 13.5308 3.81225 12.765 3.44475 12.5602C3.14325 12.3982 2.712 11.9993 3.43425 11.9888C4.11375 11.9783 4.599 12.6142 4.761 12.873C5.53725 14.178 6.777 13.8105 7.27275 13.584C7.34775 13.0237 7.57425 12.6465 7.8225 12.4305C5.90325 12.2153 3.8985 11.4713 3.8985 8.172C3.8985 7.2345 4.23225 6.45825 4.782 5.8545C4.69575 5.6385 4.39425 4.75425 4.86825 3.5685C4.86825 3.5685 5.5905 3.342 7.2405 4.45275C7.9305 4.2585 8.66325 4.16175 9.39675 4.16175C10.1295 4.16175 10.863 4.25925 11.553 4.45275C13.203 3.3315 13.9245 3.5685 13.9245 3.5685C14.3993 4.75425 14.097 5.6385 14.0107 5.8545C14.5605 6.45825 14.895 7.22325 14.895 8.172C14.895 11.4818 12.879 12.2145 10.9598 12.4305C11.2725 12.7005 11.5417 13.218 11.5417 14.0265C11.5417 15.18 11.5312 16.107 11.5312 16.398C11.5312 16.6245 11.6933 16.8945 12.1238 16.8083C15.5318 15.6652 18 12.4305 18 8.625C18 3.8595 14.1405 0 9.375 0Z" />
+                      d="M9.375 0C4.6095 0 0.75 3.8595 0.75 8.625C0.75 12.4418 3.219 15.6652 6.64725 16.8075C7.0785 16.8832 7.23975 16.6245 7.23975 16.398C7.23975 16.1933 7.22925 15.5145 7.22925 14.7915C5.0625 15.1905 4.50225 14.2635 4.32975 13.779C4.23225 13.5308 3.81225 12.765 3.44475 12.5602C3.14325 12.3982 2.712 11.9993 3.43425 11.9888C4.11375 11.9783 4.599 12.6142 4.761 12.873C5.53725 14.178 6.777 13.8105 7.27275 13.584C7.34775 13.0237 7.57425 12.6465 7.8225 12.4305C5.90325 12.2153 3.8985 11.4713 3.8985 8.172C3.8985 7.2345 4.23225 6.45825 4.782 5.8545C4.69575 5.6385 4.39425 4.75425 4.86825 3.5685C4.86825 3.5685 5.5905 3.342 7.2405 4.45275C7.9305 4.2585 8.66325 4.16175 9.39675 4.16175C10.1295 4.16175 10.863 4.25925 11.553 4.45275C13.203 3.3315 13.9245 3.5685 13.9245 3.5685C14.3993 4.75425 14.097 5.6385 14.0107 5.8545C14.5605 6.45825 14.895 7.22325 14.895 8.172C14.895 11.4818 12.879 12.2145 10.9598 12.4305C11.2725 12.7005 11.5417 13.218 11.5417 14.0265C11.5417 15.18 11.5312 16.107 11.5312 16.398C11.5312 16.6245 11.6933 16.8945 12.1238 16.8083C15.5318 15.6652 18 12.4305 18 8.625C18 3.8595 14.1405 0 9.375 0Z"
+                    />
                   </svg>
                   GitHub
                 </a>
@@ -169,8 +212,16 @@ watch(
               <!-- Mobile: hamburger + search -->
               <div class="HeaderMobileActions">
                 <button class="HeaderButton HeaderSearchMobile" aria-label="Search">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
                     <circle cx="11" cy="11" r="8" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
@@ -185,19 +236,37 @@ watch(
               <!-- Framework Toggle -->
               <div class="FrameworkToggle">
                 <span class="FrameworkBtn active">
-                  <svg class="FrameworkIcon" width="14" height="14" viewBox="0 0 261.76 226.69" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M161.096.001l-30.225 52.351L100.647.001H0l130.877 226.688L261.749.001z" fill="#41B883"/>
-                    <path d="M161.096.001l-30.225 52.351L100.647.001H52.346l78.526 136.01L209.398.001z" fill="#34495E"/>
+                  <svg
+                    class="FrameworkIcon"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 261.76 226.69"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M161.096.001l-30.225 52.351L100.647.001H0l130.877 226.688L261.749.001z"
+                      fill="#41B883"
+                    />
+                    <path
+                      d="M161.096.001l-30.225 52.351L100.647.001H52.346l78.526 136.01L209.398.001z"
+                      fill="#34495E"
+                    />
                   </svg>
                   Vue
                 </span>
                 <span class="FrameworkBtn disabled" title="React docs coming soon">
-                  <svg class="FrameworkIcon" width="14" height="14" viewBox="-11.5 -10.232 23 20.463" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="2.05" fill="#61DAFB"/>
+                  <svg
+                    class="FrameworkIcon"
+                    width="14"
+                    height="14"
+                    viewBox="-11.5 -10.232 23 20.463"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle r="2.05" fill="#61DAFB" />
                     <g stroke="#61DAFB" stroke-width="1" fill="none">
-                      <ellipse rx="11" ry="4.2"/>
-                      <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-                      <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+                      <ellipse rx="11" ry="4.2" />
+                      <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+                      <ellipse rx="11" ry="4.2" transform="rotate(120)" />
                     </g>
                   </svg>
                   React
@@ -208,14 +277,20 @@ watch(
                 <div class="SideNavHeading">Overview</div>
                 <ul class="SideNavList">
                   <li class="SideNavItem">
-                    <router-link to="/overview/quick-start" class="SideNavLink"
-                      :data-active="route.path === '/overview/quick-start' || undefined">
+                    <router-link
+                      to="/overview/quick-start"
+                      class="SideNavLink"
+                      :data-active="route.path === '/overview/quick-start' || undefined"
+                    >
                       Quick start
                     </router-link>
                   </li>
                   <li class="SideNavItem">
-                    <router-link to="/overview/accessibility" class="SideNavLink"
-                      :data-active="route.path === '/overview/accessibility' || undefined">
+                    <router-link
+                      to="/overview/accessibility"
+                      class="SideNavLink"
+                      :data-active="route.path === '/overview/accessibility' || undefined"
+                    >
                       Accessibility
                     </router-link>
                   </li>
@@ -226,14 +301,20 @@ watch(
                 <div class="SideNavHeading">Components</div>
                 <ul class="SideNavList">
                   <li class="SideNavItem">
-                    <router-link to="/components/field" class="SideNavLink"
-                      :data-active="route.path === '/components/field' || undefined">
+                    <router-link
+                      to="/components/field"
+                      class="SideNavLink"
+                      :data-active="route.path === '/components/field' || undefined"
+                    >
                       Field
                     </router-link>
                   </li>
                   <li class="SideNavItem">
-                    <router-link to="/components/input" class="SideNavLink"
-                      :data-active="route.path === '/components/input' || undefined">
+                    <router-link
+                      to="/components/input"
+                      class="SideNavLink"
+                      :data-active="route.path === '/components/input' || undefined"
+                    >
                       Input
                     </router-link>
                   </li>
@@ -261,11 +342,18 @@ watch(
                   </a>
                 </header>
                 <ul class="QuickNavList">
-                  <li class="QuickNavItem" v-for="item in tocItems" :key="item.id"
-                    :class="{ 'QuickNavItem--nested': item.level === 3 }">
-                    <a :href="'#' + item.id" class="QuickNavLink"
+                  <li
+                    class="QuickNavItem"
+                    v-for="item in tocItems"
+                    :key="item.id"
+                    :class="{ 'QuickNavItem--nested': item.level === 3 }"
+                  >
+                    <a
+                      :href="'#' + item.id"
+                      class="QuickNavLink"
                       :class="{ 'QuickNavLink--active': activeHeadingId === item.id }"
-                      @click.prevent="scrollToAnchor(item.id)">
+                      @click.prevent="scrollToAnchor(item.id)"
+                    >
                       {{ item.text }}
                     </a>
                   </li>
@@ -277,10 +365,24 @@ watch(
       </div>
     </div>
     <!-- Theme toggle floating button -->
-    <button class="ThemeToggle" @click="cycleTheme" :aria-label="'Theme: ' + theme" :title="'Theme: ' + theme">
+    <button
+      class="ThemeToggle"
+      @click="cycleTheme"
+      :aria-label="'Theme: ' + theme"
+      :title="'Theme: ' + theme"
+    >
       <!-- Sun icon (shown in dark mode) -->
-      <svg v-if="theme === 'dark'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        v-if="theme === 'dark'"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <circle cx="12" cy="12" r="5" />
         <line x1="12" y1="1" x2="12" y2="3" />
         <line x1="12" y1="21" x2="12" y2="23" />
@@ -292,13 +394,31 @@ watch(
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
       </svg>
       <!-- Moon icon (shown in light mode) -->
-      <svg v-else-if="theme === 'light'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        v-else-if="theme === 'light'"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </svg>
       <!-- Monitor icon (system mode) -->
-      <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
+      <svg
+        v-else
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
         <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
         <line x1="8" y1="21" x2="16" y2="21" />
         <line x1="12" y1="17" x2="12" y2="21" />
@@ -457,7 +577,14 @@ body {
   line-height: 1.5;
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
   font-size: var(--text-md);
 }
 
@@ -483,7 +610,8 @@ button {
   color: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -731,7 +859,9 @@ ul, ol {
   border-radius: 999px;
   color: var(--color-gray-600);
   cursor: pointer;
-  transition: border-color 0.2s, background-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
   height: 2rem;
 }
 
@@ -767,7 +897,9 @@ ul, ol {
 .SideNavRoot {
   --side-nav-item-height: 2rem;
   --side-nav-item-line-height: var(--text-md--line-height);
-  --side-nav-item-padding-y: calc(var(--side-nav-item-height) / 2 - var(--side-nav-item-line-height) / 2);
+  --side-nav-item-padding-y: calc(
+    var(--side-nav-item-height) / 2 - var(--side-nav-item-line-height) / 2
+  );
 
   font-size: var(--text-md);
   line-height: var(--text-md--line-height);
@@ -931,7 +1063,9 @@ ul, ol {
 .QuickNavRoot {
   --quick-nav-item-height: 2rem;
   --quick-nav-item-line-height: var(--text-md--line-height);
-  --quick-nav-item-padding-y: calc(var(--quick-nav-item-height) / 2 - var(--quick-nav-item-line-height) / 2);
+  --quick-nav-item-padding-y: calc(
+    var(--quick-nav-item-height) / 2 - var(--quick-nav-item-line-height) / 2
+  );
   --quick-nav-margin-x: 2rem;
 
   font-size: var(--text-md);
@@ -1016,7 +1150,10 @@ ul, ol {
   border: 1px solid var(--color-gray-200);
   color: var(--color-gray-600);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.15s;
 }
 
 .ThemeToggle:hover {

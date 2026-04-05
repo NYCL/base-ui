@@ -85,13 +85,13 @@ When using `onChange` mode, you can debounce the validation to avoid excessive c
 
 ### FieldRoot
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | — | The field name for form submission |
-| `validate` | `(value: unknown) => string \| null` | — | Custom validation function |
-| `validation-mode` | `'onSubmit' \| 'onChange' \| 'onBlur'` | `'onSubmit'` | When validation triggers |
-| `validation-debounce-time` | `number` | `0` | Debounce time in ms for onChange validation |
-| `disabled` | `boolean` | `false` | Disables all child controls |
+| Prop                       | Type                                   | Default      | Description                                 |
+| -------------------------- | -------------------------------------- | ------------ | ------------------------------------------- |
+| `name`                     | `string`                               | —            | The field name for form submission          |
+| `validate`                 | `(value: unknown) => string \| null`   | —            | Custom validation function                  |
+| `validation-mode`          | `'onSubmit' \| 'onChange' \| 'onBlur'` | `'onSubmit'` | When validation triggers                    |
+| `validation-debounce-time` | `number`                               | `0`          | Debounce time in ms for onChange validation |
+| `disabled`                 | `boolean`                              | `false`      | Disables all child controls                 |
 
 ### FieldLabel
 
