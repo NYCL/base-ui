@@ -112,7 +112,7 @@ When the parent `FieldRoot` is disabled, the Input automatically becomes disable
 
 | Prop          | Type      | Default  | Description                       |
 | ------------- | --------- | -------- | --------------------------------- |
-| `modelValue`  | `string`  | —        | The controlled value of the input |
+| `modelValue`  | `string`  | —        | The controlled value of the `input` |
 | `placeholder` | `string`  | —        | Placeholder text                  |
 | `type`        | `string`  | `'text'` | The input type                    |
 | `disabled`    | `boolean` | `false`  | Whether the input is disabled     |

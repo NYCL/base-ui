@@ -1,42 +1,42 @@
-# base-ui
+# Base UI (Vue Edition)
 
-This template should help get you started developing with Vue 3 in Vite.
+Base UI Vue is a headless, unstyled UI component library for building accessible user interfaces, inspired by the original [MUI Base UI](https://github.com/mui/base-ui).
 
-## Recommended IDE Setup
+From the creators of Radix, Floating UI, and Material UI, the original Base UI is a benchmark for headless design. This project aims to bring that same level of accessibility and developer experience to the **Vue** ecosystem.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## Documentation
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+To get started, check out the [Base UI Vue documentation](http://localhost:5173).
 
-## Type Support for `.vue` Imports in TS
+## Features
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **Headless & Unstyled**: Complete control over your CSS. No more fighting with internal styles.
+- **Accessible by Default**: Built with WAI-ARIA patterns in mind.
+- **Framework-Agnostic Core**: Complex logic is separated from framework wrappers to ensure consistency.
+- **High Performance**: Lightweight and optimized for modern Vue applications.
 
-## Customize configuration
+## Project Structure
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+This repository is a monorepo containing:
 
-## Project Setup
+- **`packages/utils`**: Core framework-agnostic logic and helpers.
+- **`packages/vue`**: Vue component wrappers and hooks.
+- **`packages/react`**: React equivalents for multi-framework consistency.
+- **`src`**: The documentation site.
 
-```sh
-bun install
+## Installation
+
+```bash
+bun add @base-ui/vue
 ```
 
-### Compile and Hot-Reload for Development
+## Community
 
-```sh
-bun dev
-```
+- **GitHub Repository**: [nycl/base-ui](https://github.com/nycl/base-ui)
+- **Original Project**: [mui/base-ui](https://github.com/mui/base-ui)
 
-### Type-Check, Compile and Minify for Production
+## License
 
-```sh
-bun run build
-```
+This project is licensed under the terms of the [MIT license](/LICENSE).
