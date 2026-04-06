@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import SunIcon from '../icons/SunIcon.vue';
 import MoonIcon from '../icons/MoonIcon.vue';
 import MonitorIcon from '../icons/MonitorIcon.vue';
@@ -30,13 +30,12 @@ function cycleTheme() {
   applyTheme();
 }
 
-import { onMounted } from 'vue';
 onMounted(applyTheme);
 </script>
 
 <template>
   <button
-    class="ThemeToggle"
+    class="fixed bottom-5 right-5 z-100 w-10 h-10 rounded-full flex items-center justify-center bg-gray-100 border border-gray-200 text-gray-600 shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-all duration-200 hover:bg-gray-200 hover:text-foreground hover:scale-105 active:scale-95"
     @click="cycleTheme"
     :aria-label="'Theme: ' + theme"
     :title="'Theme: ' + theme"

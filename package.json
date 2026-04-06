@@ -19,6 +19,8 @@
   "dependencies": {
     "@base-ui/utils": "workspace:*",
     "@base-ui/vue": "workspace:*",
+    "@tailwindcss/vite": "^4.2.2",
+    "tailwindcss": "^4.2.2",
     "vue": "^3.5.32",
     "vue-router": "^5.0.4"
   },

@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueDevTools from 'vite-plugin-vue-devtools';
+import tailwindcss from '@tailwindcss/vite';
 import Markdown from 'unplugin-vue-markdown/vite';
 import Shiki from '@shikijs/markdown-it';
 import { 
@@ -14,6 +15,7 @@ import {
 // https://vite.dev/config/
 export default defineConfig(async () => ({
   plugins: [
+    tailwindcss(),
     Markdown({
       async markdownItSetup(md) {
         // @ts-expect-error - markdown-it type mismatch between shiki and unplugin-vue-markdown
