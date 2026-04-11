@@ -129,12 +129,18 @@ watch(
   <!-- Root Layout -->
   <div class="relative z-0 px-0 lg:px-12">
     <!-- Top gridline -->
-    <div class="hidden lg:block absolute top-[var(--header-height)] left-0 right-0 h-px bg-gridline -mt-px"></div>
+    <div
+      class="hidden lg:block absolute top-[var(--header-height)] left-0 right-0 h-px bg-gridline -mt-px"
+    ></div>
     <!-- Bottom gridline -->
-    <div class="hidden lg:block absolute bottom-[var(--header-height)] left-0 right-0 h-px bg-gridline -mb-px"></div>
+    <div
+      class="hidden lg:block absolute bottom-[var(--header-height)] left-0 right-0 h-px bg-gridline -mb-px"
+    ></div>
 
     <!-- Container -->
-    <div class="relative flex flex-col mx-auto min-h-dvh max-w-[calc(var(--breakpoint-max-layout-width)-var(--header-height)*2)] lg:pt-[var(--header-height)] lg:pb-0">
+    <div
+      class="relative flex flex-col mx-auto min-h-dvh max-w-[calc(var(--breakpoint-max-layout-width)-var(--header-height)*2)] lg:pt-[var(--header-height)] lg:pb-0"
+    >
       <!-- Left vertical gridline -->
       <div class="hidden lg:block absolute top-0 bottom-0 left-0 w-px bg-gridline -ml-px"></div>
       <!-- Right vertical gridline -->
@@ -143,7 +149,9 @@ watch(
       <!-- Content wrapper -->
       <div class="flex flex-col grow bg-content">
         <!-- Content Grid -->
-        <div class="grid items-start pt-[var(--header-height)] px-6 grid-cols-[1fr] grid-rows-[auto_1fr] sm:px-10 lg:pt-0 lg:px-0 lg:grid-cols-[var(--sidebar-width)_1fr_3rem] min-[84rem]:grid-cols-[var(--sidebar-width)_1fr_var(--sidebar-width)]">
+        <div
+          class="grid items-start pt-[var(--header-height)] px-6 grid-cols-[1fr] grid-rows-[auto_1fr] sm:px-10 lg:pt-0 lg:px-0 lg:grid-cols-[var(--sidebar-width)_1fr_3rem] min-[84rem]:grid-cols-[var(--sidebar-width)_1fr_var(--sidebar-width)]"
+        >
           <!-- ════ Header ════ -->
           <AppHeader />
 
@@ -151,7 +159,10 @@ watch(
           <SideNav />
 
           <!-- ════ Main Content ════ -->
-          <main class="min-w-0 max-w-3xl w-full pt-6 pb-20 mx-auto sm:pt-8 lg:mx-0 lg:pb-32" id="main-content">
+          <main
+            class="min-w-0 max-w-3xl w-full pt-6 pb-20 mx-auto sm:pt-8 lg:mx-0 lg:pb-32"
+            id="main-content"
+          >
             <div class="markdown-body">
               <router-view />
             </div>

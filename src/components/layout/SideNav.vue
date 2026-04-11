@@ -5,11 +5,16 @@ const route = useRoute();
 </script>
 
 <template>
-  <nav class="hidden lg:block lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:scrollbar-thin text-[length:var(--text-md)] leading-[var(--text-md-lh)]" aria-label="Main navigation">
+  <nav
+    class="hidden lg:block lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:scrollbar-thin text-[length:var(--text-md)] leading-[var(--text-md-lh)]"
+    aria-label="Main navigation"
+  >
     <div class="p-[2rem_2.5rem_2.5rem_1.5rem]">
       <!-- Framework Toggle -->
       <div class="flex bg-gray-100 rounded-full p-[0.2rem] mb-6 border border-gray-200">
-        <span class="flex-1 flex items-center justify-center gap-1.5 text-[0.8125rem] font-medium py-1 rounded-full bg-content text-blue shadow-[0_1px_3px_rgba(0,0,0,0.08)] border border-gray-200">
+        <span
+          class="flex-1 flex items-center justify-center gap-1.5 text-[0.8125rem] font-medium py-1 rounded-full bg-content text-blue shadow-[0_1px_3px_rgba(0,0,0,0.08)] border border-gray-200"
+        >
           <svg
             class="shrink-0 block"
             width="14"
@@ -28,7 +33,10 @@ const route = useRoute();
           </svg>
           Vue
         </span>
-        <span class="flex-1 flex items-center justify-center gap-1.5 text-[0.8125rem] font-medium py-1 rounded-full text-gray-600 opacity-45 cursor-not-allowed" title="React docs coming soon">
+        <span
+          class="flex-1 flex items-center justify-center gap-1.5 text-[0.8125rem] font-medium py-1 rounded-full text-gray-600 opacity-45 cursor-not-allowed"
+          title="React docs coming soon"
+        >
           <svg
             class="shrink-0 block"
             width="14"

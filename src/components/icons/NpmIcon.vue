@@ -14,10 +14,6 @@ defineProps<Props>();
     fill="currentColor"
     v-bind="$attrs"
   >
-    <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
-      d="M0 0V16H16V0H0ZM13 3H3V13H8V5H11V13H13V3Z"
-    />
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0V16H16V0H0ZM13 3H3V13H8V5H11V13H13V3Z" />
   </svg>
 </template>

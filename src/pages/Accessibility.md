@@ -40,7 +40,7 @@ All components include appropriate ARIA attributes:
 
 The [Field](/components/field) component automatically associates labels, descriptions, and error messages with form controls using `aria-labelledby`, `aria-describedby`, and `aria-invalid`.
 
-```vue
+```vue-html
 <FieldRoot>
   <FieldLabel>Email</FieldLabel>
   <Input type="email" />

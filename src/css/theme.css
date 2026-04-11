@@ -122,21 +122,21 @@
   --color-gray-900: oklch(95% 0.5% 264deg / 90%);
   --color-gray-950: oklch(94% 0.375% 264deg / 95%);
 
-    --color-content: black;
-    --color-background: black;
-    --color-foreground: oklch(90% 2% 264deg);
-    --color-gridline: oklch(24% 1% 264deg);
-    --color-selection: oklch(50% 50% 264deg / 40%);
-    --color-line-highlight: oklch(50% 50% 264deg / 20%);
-    --color-line-highlight-strong: oklch(50% 50% 264deg / 35%);
-    --color-inline-highlight: oklch(50% 50% 264deg / 35%);
+  --color-content: black;
+  --color-background: black;
+  --color-foreground: oklch(90% 2% 264deg);
+  --color-gridline: oklch(24% 1% 264deg);
+  --color-selection: oklch(50% 50% 264deg / 40%);
+  --color-line-highlight: oklch(50% 50% 264deg / 20%);
+  --color-line-highlight-strong: oklch(50% 50% 264deg / 35%);
+  --color-inline-highlight: oklch(50% 50% 264deg / 35%);
 
-    /* ─── Syntax colors (dark) ─── */
-    --color-gray: var(--color-gray-600);
-    --color-green: oklch(75% 25% 150deg);
-    --color-navy: oklch(85% 25% 264deg);
-    --color-purple: oklch(85% 30% 360deg);
-    --color-violet: oklch(80% 60% 280deg);
+  /* ─── Syntax colors (dark) ─── */
+  --color-gray: var(--color-gray-600);
+  --color-green: oklch(75% 25% 150deg);
+  --color-navy: oklch(85% 25% 264deg);
+  --color-purple: oklch(85% 30% 360deg);
+  --color-violet: oklch(80% 60% 280deg);
 }
 
 /* ─── Forced light theme ─── */
@@ -157,19 +157,19 @@
   --color-gray-900: oklch(12% 5% 264deg / 90%);
   --color-gray-950: oklch(12% 5% 264deg / 95%);
 
-    --color-content: white;
-    --color-background: var(--color-gray-50);
-    --color-foreground: var(--color-gray-900);
-    --color-gridline: oklch(91.6% 1% 264deg);
-    --color-selection: oklch(80% 50% 264deg / 25%);
-    --color-line-highlight: oklch(80% 50% 264deg / 10%);
-    --color-line-highlight-strong: oklch(80% 50% 264deg / 25%);
-    --color-inline-highlight: oklch(80% 50% 264deg / 15%);
+  --color-content: white;
+  --color-background: var(--color-gray-50);
+  --color-foreground: var(--color-gray-900);
+  --color-gridline: oklch(91.6% 1% 264deg);
+  --color-selection: oklch(80% 50% 264deg / 25%);
+  --color-line-highlight: oklch(80% 50% 264deg / 10%);
+  --color-line-highlight-strong: oklch(80% 50% 264deg / 25%);
+  --color-inline-highlight: oklch(80% 50% 264deg / 15%);
 
-    /* ─── Syntax colors (light) ─── */
-    --color-gray: var(--color-gray-600);
-    --color-navy: oklch(31% 25% 264deg);
-    --color-green: oklch(46% 30% 150deg);
-    --color-purple: oklch(40% 45% 360deg);
-    --color-violet: oklch(40% 60% 300deg);
+  /* ─── Syntax colors (light) ─── */
+  --color-gray: var(--color-gray-600);
+  --color-navy: oklch(31% 25% 264deg);
+  --color-green: oklch(46% 30% 150deg);
+  --color-purple: oklch(40% 45% 360deg);
+  --color-violet: oklch(40% 60% 300deg);
 }

@@ -56,7 +56,7 @@ The `validation-mode` prop controls when validation runs:
 - `onChange` — validates as the user types
 - `onBlur` — validates when the field loses focus
 
-```vue
+```vue-html
 <FieldRoot name="username" :validate="validateUsername" validation-mode="onBlur">
   <FieldLabel>Username</FieldLabel>
   <Input />
@@ -68,7 +68,7 @@ The `validation-mode` prop controls when validation runs:
 
 When using `onChange` mode, you can debounce the validation to avoid excessive calls:
 
-```vue
+```vue-html
 <FieldRoot
   name="search"
   :validate="validateSearch"

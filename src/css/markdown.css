@@ -128,7 +128,6 @@
 /* ─── Code blocks (Base UI Syntax Highlighting) ─── */
 
 .markdown-body pre {
-  background-color: var(--color-content) !important;
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-md);
   padding: 1rem 0;
@@ -136,7 +135,8 @@
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
   line-height: 1.6;
-  position: relative; /* Added for copy button positioning */
+  position: relative;
+  /* Added for copy button positioning */
 }
 
 .markdown-body pre code {
@@ -146,13 +146,15 @@
   border-radius: 0;
   font-size: inherit;
   color: inherit;
-  display: flex; /* Flex handles blank lines and ignores intermediate \n nodes */
+  display: flex;
+  /* Flex handles blank lines and ignores intermediate \n nodes */
   flex-direction: column;
 }
 
 .markdown-body pre .line {
   padding-inline: 1.25rem;
-  min-height: 1.6rem; /* Ensure blank lines are visible */
+  min-height: 1.6rem;
+  /* Ensure blank lines are visible */
 }
 
 /* ─── Copy Button ─── */
@@ -170,7 +172,10 @@
   border-radius: 4px;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.15s, background-color 0.15s, color 0.15s;
+  transition:
+    opacity 0.15s,
+    background-color 0.15s,
+    color 0.15s;
   z-index: 5;
 }
 
@@ -192,8 +197,26 @@
   border-color: var(--color-green);
 }
 
-/* Syntax colors are handled by the custom Shiki theme using CSS variables.
-   No manual dark mode overrides are needed for code spans. */
+/* ─── Shiki Dual Themes (Dark mode override) ─── */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-theme) .markdown-body pre,
+  :root:not(.light-theme) .markdown-body pre span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+:root.dark-theme .markdown-body pre,
+:root.dark-theme .markdown-body pre span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
 
 /* ─── Blockquotes ─── */
 
