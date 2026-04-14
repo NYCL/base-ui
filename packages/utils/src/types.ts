@@ -80,3 +80,34 @@ export const DEFAULT_FIELD_STATE: FieldState = {
 export type ValidateFn = (
   value: unknown,
 ) => string | string[] | null | Promise<string | string[] | null>;
+
+/**
+ * Represents the state of any input component.
+ * For clarity Input represent any form element that can be validated.
+ */
+export interface InputState extends FieldState {
+  readonly?: boolean;
+  required?: boolean;
+}
+
+/**
+ * Represents the state of a checkbox component.
+ */
+export interface CheckboxState extends InputState {
+  checked: boolean;
+  indeterminate: boolean;
+}
+
+/**
+ * Represents the state of a switch component.
+ */
+export interface SwitchState extends InputState {
+  checked: boolean;
+}
+
+/**
+ * Represents the state of a radio component.
+ */
+export interface RadioState extends InputState {
+  checked: boolean;
+}
