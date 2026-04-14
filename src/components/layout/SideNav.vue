@@ -100,6 +100,51 @@ const route = useRoute();
               Input
             </router-link>
           </li>
+          <li class="relative">
+            <router-link
+              to="/components/checkbox"
+              class="block py-[calc(1rem-var(--text-md-lh)/2)] px-3 rounded-md text-[length:var(--text-md)] leading-[var(--text-md-lh)] whitespace-nowrap select-none transition-colors duration-150 hover:bg-gray-100 focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-blue focus-visible:-outline-offset-1 data-[active]:bg-gray-100 data-[active]:outline data-[active]:outline-1 data-[active]:outline-gray-200 data-[active]:-outline-offset-1 data-[active]:cursor-default"
+              :data-active="route.path === '/components/checkbox' || undefined"
+            >
+              Checkbox
+            </router-link>
+          </li>
+          <li class="relative">
+            <router-link
+              to="/components/checkbox-group"
+              class="block py-[calc(1rem-var(--text-md-lh)/2)] px-3 rounded-md text-[length:var(--text-md)] leading-[var(--text-md-lh)] whitespace-nowrap select-none transition-colors duration-150 hover:bg-gray-100 focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-blue focus-visible:-outline-offset-1 data-[active]:bg-gray-100 data-[active]:outline data-[active]:outline-1 data-[active]:outline-gray-200 data-[active]:-outline-offset-1 data-[active]:cursor-default"
+              :data-active="route.path === '/components/checkbox-group' || undefined"
+            >
+              Checkbox Group
+            </router-link>
+          </li>
+          <li class="relative">
+            <router-link
+              to="/components/radio-group"
+              class="block py-[calc(1rem-var(--text-md-lh)/2)] px-3 rounded-md text-[length:var(--text-md)] leading-[var(--text-md-lh)] whitespace-nowrap select-none transition-colors duration-150 hover:bg-gray-100 focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-blue focus-visible:-outline-offset-1 data-[active]:bg-gray-100 data-[active]:outline data-[active]:outline-1 data-[active]:outline-gray-200 data-[active]:-outline-offset-1 data-[active]:cursor-default"
+              :data-active="route.path === '/components/radio-group' || undefined"
+            >
+              Radio Group
+            </router-link>
+          </li>
+          <li class="relative">
+            <router-link
+              to="/components/radio"
+              class="block py-[calc(1rem-var(--text-md-lh)/2)] px-3 rounded-md text-[length:var(--text-md)] leading-[var(--text-md-lh)] whitespace-nowrap select-none transition-colors duration-150 hover:bg-gray-100 focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-blue focus-visible:-outline-offset-1 data-[active]:bg-gray-100 data-[active]:outline data-[active]:outline-1 data-[active]:outline-gray-200 data-[active]:-outline-offset-1 data-[active]:cursor-default"
+              :data-active="route.path === '/components/radio' || undefined"
+            >
+              Radio
+            </router-link>
+          </li>
+          <li class="relative">
+            <router-link
+              to="/components/switch"
+              class="block py-[calc(1rem-var(--text-md-lh)/2)] px-3 rounded-md text-[length:var(--text-md)] leading-[var(--text-md-lh)] whitespace-nowrap select-none transition-colors duration-150 hover:bg-gray-100 focus-visible:z-1 focus-visible:outline-2 focus-visible:outline-blue focus-visible:-outline-offset-1 data-[active]:bg-gray-100 data-[active]:outline data-[active]:outline-1 data-[active]:outline-gray-200 data-[active]:-outline-offset-1 data-[active]:cursor-default"
+              :data-active="route.path === '/components/switch' || undefined"
+            >
+              Switch
+            </router-link>
+          </li>
         </ul>
       </div>
     </div>
