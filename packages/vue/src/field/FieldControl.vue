@@ -3,7 +3,7 @@ import { computed, ref, useId, useTemplateRef, type Component, watch } from 'vue
 import { useFieldContext } from './useFieldContext';
 import type { FieldState, FieldValidityData } from '@base-ui/utils';
 import { DEFAULT_VALIDITY_STATE } from '@base-ui/utils';
-import { stateToDataAttributes } from '@base-ui/utils';
+import { fieldStateToDataAttributes } from '@base-ui/utils';
 import { useFieldValidation } from './useFieldValidation';
 
 const {
@@ -14,11 +14,15 @@ const {
   placeholder,
   type = 'text',
   autoFocus = false,
+  defaultValue = '',
+  stateAttributeMapper,
 } = defineProps<{
   /** Whether the control is disabled. */
   disabled?: boolean;
   /** Element or component to render as. @default 'input' */
   as?: string | Component;
+  /** A custom mapper to generate data attributes from the field state. */
+  stateAttributeMapper?: (state: FieldState) => Record<string, string>;
   /** The name attribute for the control. */
   name?: string;
   /** The id attribute for the control. */
@@ -29,6 +33,8 @@ const {
   type?: string;
   /** Whether to auto-focus on mount. @default false */
   autoFocus?: boolean;
+  /** The default value for uncontrolled usage. */
+  defaultValue?: string;
 }>();
 
 const emit = defineEmits<{
@@ -36,7 +42,7 @@ const emit = defineEmits<{
   valueChange: [value: string];
 }>();
 
-const modelValue = defineModel<string>({ default: '' });
+const modelValue = defineModel<string>({ default: defaultValue });
 
 const fieldContext = useFieldContext();
 
@@ -93,7 +99,10 @@ const state = computed<FieldState>(() => {
   };
 });
 
-const dataAttrs = computed(() => stateToDataAttributes(state.value));
+const dataAttrs = computed(() => {
+  if (stateAttributeMapper) return stateAttributeMapper(state.value);
+  return fieldStateToDataAttributes(state.value);
+});
 
 const controlRef = useTemplateRef<HTMLElement>('control');
 
