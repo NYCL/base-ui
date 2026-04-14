@@ -302,7 +302,7 @@
 
 /* ─── Form component styling within demos ─── */
 
-.markdown-body label {
+.markdown-body label:not([class]) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -311,7 +311,6 @@
   line-height: 1.25rem;
   font-weight: 500;
   color: var(--color-gray-900);
-  margin-bottom: 0.25rem;
 }
 
 .markdown-body input,
