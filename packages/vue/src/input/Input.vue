@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import FieldControl from '../field/FieldControl.vue';
 import type { Component } from 'vue';
+import { inputStateToDataAttributes, type FieldState } from '@base-ui/utils';
 
 const {
   disabled = false,
@@ -11,9 +12,16 @@ const {
   type = 'text',
   as = 'input',
   autoFocus = false,
+  defaultValue = '',
+  readonly = false,
+  required = false,
 } = defineProps<{
   /** Whether the input is disabled. */
   disabled?: boolean;
+  /** Whether the input is read-only. */
+  readonly?: boolean;
+  /** Whether the input is required. */
+  required?: boolean;
   /** The name attribute. */
   name?: string;
   /** The id attribute. */
@@ -26,6 +34,8 @@ const {
   as?: string | Component;
   /** Whether to auto-focus on mount. @default false */
   autoFocus?: boolean;
+  /** Default value for uncontrolled usage. */
+  defaultValue?: string;
 }>();
 
 const emit = defineEmits<{
@@ -33,7 +43,7 @@ const emit = defineEmits<{
   change: [value: string];
 }>();
 
-const modelValue = defineModel<string>({ default: '' });
+const modelValue = defineModel<string>({ default: defaultValue });
 
 function onValueChange(value: string) {
   emit('change', value);
@@ -46,6 +56,8 @@ function onValueChange(value: string) {
 const forwardedProps = computed(() => {
   const props: Record<string, unknown> = {
     disabled,
+    readonly,
+    required,
     type,
     as,
     autoFocus,
@@ -61,6 +73,13 @@ const forwardedProps = computed(() => {
   <FieldControl
     v-model="modelValue"
     v-bind="{ ...forwardedProps, ...$attrs }"
+    :state-attribute-mapper="
+      (s: FieldState) => inputStateToDataAttributes({ ...s, readonly, required })
+    "
+    :readonly="readonly"
+    :required="required"
+    :aria-readonly="readonly || undefined"
+    :aria-required="required || undefined"
     @value-change="onValueChange"
   />
 </template>
