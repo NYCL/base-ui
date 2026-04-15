@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, ref, computed, useTemplateRef } from 'vue';
+import { provide, computed, useTemplateRef } from 'vue';
 import { useFieldContext } from '../field/useFieldContext';
 import { CHECKBOX_GROUP_CONTEXT_KEY, type CheckboxGroupContext } from './useCheckboxGroupContext';
 
@@ -24,29 +24,15 @@ const emit = defineEmits<{
   change: [value: string[]];
 }>();
 
-const modelValue = defineModel<string[]>();
+const modelValue = defineModel<string[]>({ default: () => [...defaultValue] });
 
 const fieldContext = useFieldContext();
 
 const resolvedDisabled = computed(() => fieldContext?.state.value.disabled || disabledProp);
 
-// --- Internal value state ---
-const internalValue = ref<string[]>([...defaultValue]);
-
-const checkedValues = computed({
-  get: () => modelValue.value ?? internalValue.value,
-  set: (val: string[]) => {
-    if (modelValue.value !== undefined) {
-      modelValue.value = val;
-    } else {
-      internalValue.value = val;
-    }
-  },
-});
-
 function setValue(newValue: string[]) {
   emit('change', newValue);
-  checkedValues.value = newValue;
+  modelValue.value = newValue;
 
   if (fieldContext) {
     fieldContext.setDirty(true);
@@ -57,7 +43,7 @@ function setValue(newValue: string[]) {
 function toggleValue(itemValue: string) {
   if (resolvedDisabled.value) return;
 
-  const current = checkedValues.value;
+  const current = modelValue.value;
   const next = current.includes(itemValue)
     ? current.filter((v) => v !== itemValue)
     : [...current, itemValue];
@@ -82,7 +68,7 @@ function handleFocusOut(event: FocusEvent) {
 
 // --- Provide context ---
 const checkboxGroupContext: CheckboxGroupContext = {
-  value: computed(() => checkedValues.value),
+  value: computed(() => modelValue.value),
   setValue,
   toggleValue,
   disabled: resolvedDisabled,
