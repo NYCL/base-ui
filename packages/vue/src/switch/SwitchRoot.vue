@@ -4,11 +4,7 @@ import { useFieldContext } from '../field/useFieldContext';
 import { useFieldValidation } from '../field/useFieldValidation';
 import { SWITCH_CONTEXT_KEY, type SwitchContext } from './useSwitchContext';
 import type { FieldState, FieldValidityData } from '@base-ui/utils';
-import {
-  DEFAULT_VALIDITY_STATE,
-  SwitchDataAttributes,
-  switchStateToDataAttributes,
-} from '@base-ui/utils';
+import { DEFAULT_VALIDITY_STATE, switchStateToDataAttributes } from '@base-ui/utils';
 
 const {
   disabled: disabledProp = false,

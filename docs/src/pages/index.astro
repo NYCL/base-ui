@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ReactCounter } from '@base-ui/react';
+import { VueCounter } from '@base-ui/vue';
+---
+
+<Layout>
+	<div class="max-w-2xl w-full bg-white p-8 rounded-2xl shadow-xl">
+		<h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-purple-600 to-pink-500 mb-4 text-center">
+			Astro Docs 🚀
+		</h1>
+		<p class="text-slate-600 text-center mb-8 text-lg">
+			Powered by Tailwind CSS v4, hosting Vue and React from monorepo packages.
+		</p>
+
+		<section class="flex gap-5 justify-center">
+			<!-- Load React component on the client -->
+			<ReactCounter client:visible />
+
+			<!-- Load Vue component on the client -->
+			<VueCounter client:visible />
+		</section>
+	</div>
+</Layout>

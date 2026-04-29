@@ -1,42 +1,18 @@
 {
-  "name": "vue-base-ui",
-  "version": "0.0.0",
+  "name": "astro",
   "private": true,
-  "type": "module",
+  "scripts": {
+    "dev": "bun --filter docs dev",
+    "build": "bun --filter docs build"
+  },
   "workspaces": [
+    "docs",
     "packages/*"
   ],
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --build && vite build",
-    "preview": "vite preview",
-    "type:check": "vue-tsc --build --noEmit",
-    "lint": "oxlint --fix ./src ./packages/**/src",
-    "lint:check": "oxlint ./src ./packages/**/src",
-    "format": "oxfmt src/ packages/**/src/",
-    "format:check": "oxfmt --check src/ packages/**/src/"
-  },
-  "dependencies": {
-    "@base-ui/utils": "workspace:*",
-    "@base-ui/vue": "workspace:*",
-    "@tailwindcss/vite": "^4.2.2",
-    "tailwindcss": "^4.2.2",
-    "vue": "^3.5.32",
-    "vue-router": "^5.0.4"
-  },
   "devDependencies": {
-    "@shikijs/markdown-it": "^4.0.2",
-    "@shikijs/transformers": "^4.0.2",
-    "@tsconfig/node24": "^24.0.4",
-    "@types/node": "^25.5.2",
-    "@vitejs/plugin-vue": "^6.0.5",
-    "@vue/tsconfig": "^0.9.1",
-    "oxfmt": "^0.43.0",
-    "oxlint": "^1.58.0",
-    "typescript": "^6.0.2",
-    "unplugin-vue-markdown": "^30.0.0",
-    "vite": "^8.0.3",
-    "vite-plugin-vue-devtools": "^8.1.1",
-    "vue-tsc": "^3.2.6"
+    "@types/bun": "1.3.13"
+  },
+  "peerDependencies": {
+    "typescript": "6.0.3"
   }
 }

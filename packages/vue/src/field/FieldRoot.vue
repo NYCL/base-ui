@@ -4,7 +4,7 @@ import { FIELD_CONTEXT_KEY, type FieldContext } from './useFieldContext';
 import { useFieldValidation } from './useFieldValidation';
 import type { FieldState, FieldValidityData, ValidateFn } from '@base-ui/utils';
 import { DEFAULT_VALIDITY_STATE } from '@base-ui/utils';
-import { stateToDataAttributes } from '@base-ui/utils';
+import { fieldStateToDataAttributes } from '@base-ui/utils';
 
 const {
   disabled = false,
@@ -95,7 +95,7 @@ const state = computed<FieldState>(() => ({
   focused: focused.value,
 }));
 
-const dataAttrs = computed(() => stateToDataAttributes(state.value));
+const dataAttrs = computed(() => fieldStateToDataAttributes(state.value));
 
 // Generate stable IDs for label ↔ control association
 const controlId = ref(useId());

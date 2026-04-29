@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, ref, computed, useTemplateRef } from 'vue';
+import { provide, computed, useTemplateRef } from 'vue';
 import { useFieldContext } from '../field/useFieldContext';
 import { RADIO_GROUP_CONTEXT_KEY, type RadioGroupContext } from './useRadioGroupContext';
 
