@@ -41,7 +41,7 @@ const emit = defineEmits<{
 }>();
 
 /** Two-way binding: `v-model` maps to checked state. */
-const checked = defineModel<boolean>({ default: defaultChecked });
+const checked = defineModel<boolean>(/* { default: defaultChecked } */);
 
 // --- Resolve field context (if inside a FieldRoot) ---
 const fieldContext = useFieldContext();

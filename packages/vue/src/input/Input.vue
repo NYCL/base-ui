@@ -43,7 +43,7 @@ const emit = defineEmits<{
   change: [value: string];
 }>();
 
-const modelValue = defineModel<string>({ default: defaultValue });
+const modelValue = defineModel<string>(/* { default: defaultValue } */);
 
 function onValueChange(value: string) {
   emit('change', value);

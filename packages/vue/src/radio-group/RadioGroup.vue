@@ -27,7 +27,7 @@ const emit = defineEmits<{
   change: [value: string];
 }>();
 
-const checkedValue = defineModel<string>({ default: defaultValue });
+const checkedValue = defineModel<string>(/* { default: defaultValue } */);
 
 const fieldContext = useFieldContext();
 
